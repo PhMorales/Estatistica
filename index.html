@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Distribuição normal</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Calculadora - Distribuição Normal</h1>
+    </div>
+    <div class="tipos">
+        <div class="conhecido">
+
+            <h3>Calcular com base em uma função já conhecida</h3>
+            <div class="inputs">
+                <div class="input valor">
+                    <label for="media">Média da função</label>
+                    <input type="text" class="media" name="media" placeholder="Insira um valor"
+                        onchange=validarNumero()>
+                </div>
+                <!-- <div class="input">
+                <label for="variancia">Variância</label>
+                <input type="text" class="variancia" name="variancia" placeholder="Insira um valor (padrão: 1)" onchange = checarValor()>
+            </div> -->
+                <div class="input valor">
+                    <label for="dp">Desvio padrão</label>
+                    <input type="text" class="dp" name="dp" placeholder="Insira um valor"
+                        onchange=checarValor(),validarNumero()>
+                </div>
+                <div class="input valor">
+                    <label for="qtde">Quantidade de dados</label>
+                    <input type="text" class="qtde" name="qtde" placeholder="Insira um valor" onchange=validarNumero()>
+                </div>
+                <div class="analiseConhecida">
+                    <div class="operação">
+                        <label for="op">Que tipo de analise deseja fazer?</label>
+                        <select name="op" class="selectConhecido" onchange=mostrarCamposConhecido()>
+                            <option value="select" selected="true"> -- Selecione uma opção -- </option>
+                            <option value="maior">x > Valor</option>
+                            <option value="menor">x < Valor</option>
+                            <option value="doisVal">Probabilidade entre dois valores</option>
+                            <option value="doisValFora">Probabilidade fora do intervalo entre dois valores</option>
+                        </select>
+                    </div>
+                    <div class="valores">
+                        <div class="valor v1Conhecido">
+                            <label for="val1Conhecido" class="v1LabelConhecido">Valor</label>
+                            <input type="text" class="val1Conhecido" name="val1Conhecido" placeholder="Insira um valor"
+                                onchange=validarNumero()>
+                        </div>
+                        <div class="valor v2Conhecido">
+                            <label for="val2Conhecido">Valor B</label>
+                            <input type="text" class="val2Conhecido" name="val2Conhecido" placeholder="Insira um valor"
+                                onchange=validarNumero()>
+                        </div>
+                    </div>
+                    <button class="enviar conhecidaBtn">Calcular</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="desconhecido">
+
+            <h3>Calcular com base em uma tabela - Agrupamento <select class="Agrupamento" onchange=checarTipo()>
+                    <option value="discreto" selected="true">Discreto</option>
+                    <option value="classes">Em classes</option>
+                </select>
+            </h3>
+            <div class="tabela">
+                <div class="cabecalho">
+                    <div class="xi">
+                        <p>Xi</p>
+                    </div>
+                    <div class="frequencia">
+                        <label for="tabelaSelect">Tipo de frequência</label>
+                        <select name="tabelaSelect" class="tabelaSelect">
+                            <option selected="true" value="Fi">Absoluta</option>
+                            <option value="Fac">Acumulada</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="agrupamentoValores">
+                    <div class="par">
+                        <input type="text" onchange=validarNumero()></input>
+                        <input type="text" onchange=checarValor(),validarNumero()></input>
+                    </div>
+                    <div class="par">
+                        <input type="text" onchange=validarNumero()></input>
+                        <input type="text" onchange=checarValor(),validarNumero()></input>
+                    </div>
+                </div>
+            </div>
+            <div class="campoBtn">
+                <button class="addCampo" onclick=addCampo()>+</button>
+                <button class="delCampo" onclick=delCampo()>-</button>
+            </div>
+            <div class="analiseDesconhecida">
+                <div class="operação">
+                    <label for="op">Que tipo de analise deseja fazer?</label>
+                    <select name="op" class="selectDesconhecido" onchange=mostrarCamposDesconhecido()>
+                        <option value="select" selected="true"> -- Selecione uma opção -- </option>
+                        <option value="maior">x > Valor</option>
+                        <option value="menor">x < Valor</option>
+                        <option value="doisVal">Probabilidade entre dois valores</option>
+                        <option value="doisValFora">Probabilidade fora do intervalo entre dois valores</option>
+                    </select>
+                </div>
+                <div class="valores">
+                    <div class="valor v1Desconhecido">
+                        <label for="val1Desconhecido" class="v1LabelDesconhecido">Valor</label>
+                        <input type="text" class="val1Desconhecido" name="val1Desconhecido"
+                            placeholder="Insira um valor" onchange=validarNumero()>
+                    </div>
+                    <div class="valor v2Desconhecido">
+                        <label for="val2Desconhecido">Valor B</label>
+                        <input type="text" class="val2Desconhecido" name="val2Desconhecido"
+                            placeholder="Insira um valor" onchange=validarNumero()>
+                    </div>
+                </div>
+                <button class="enviar desconhecidaBtn">Calcular</button>
+            </div>
+        </div>
+    </div>
+    <div class="mostrarResultado invisivel">
+        <p class="resultado">resultado</p>
+    </div>
+
+    </p>
+    <script src="./scripts/campos.js"></script>
+    <script src="./scripts/calculos.js" type="module"></script>
+    <!-- <script src="./scripts/statistics.js-master/statistics.js-master/statistics.min.js"></script> -->
+
+</body>
+
+</html>
